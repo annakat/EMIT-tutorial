@@ -1,0 +1,313 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Getting started with EMIT imaging spectroscopy data},
+  pdfauthor={Anna Schweiger},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Getting started with EMIT imaging spectroscopy data}
+\author{Anna Schweiger}
+\date{}
+
+\begin{document}
+\maketitle
+
+\hypertarget{load-packages}{%
+\subsubsection{Load packages}\label{load-packages}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(RNetCDF)}
+\FunctionTok{library}\NormalTok{(spectrolab)}
+\FunctionTok{library}\NormalTok{(raster)}
+\FunctionTok{library}\NormalTok{(rgdal)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{downloading-emit-data}{%
+\subsubsection{Downloading EMIT data}\label{downloading-emit-data}}
+
+Great tutorials for downloading \textbf{EMIT} data can be found on
+NASA's EMIT-Data-Resources
+\href{https://github.com/nasa/EMIT-Data-Resources}{Github}. The entire
+repository is worth checking out, but scripts are in python.
+
+For \textbf{bulk download} see the {[}NASA Earthdata Wiki{]}
+(\url{https://wiki.earthdata.nasa.gov/display/EDSC/How+To\%3A+Use+the+Download+Access+Script}.)
+
+The one tile we will use in this tutorial can accessed here, or follow
+the link in the \textbf{test\_data}:\\
+\href{https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/EMITL2ARFL.001/EMIT_L2A_RFL_001_20230812T223333_2322415_006/EMIT_L2A_RFL_001_20230812T223333_2322415_006.nc}{\textbf{L2A
+reflectance}}\\
+\href{https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/EMITL2ARFL.001/EMIT_L2A_RFL_001_20230812T223333_2322415_006/EMIT_L2A_RFLUNCERT_001_20230812T223333_2322415_006.nc}{\textbf{Uncertainty}}\\
+\href{https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/EMITL2ARFL.001/EMIT_L2A_RFL_001_20230812T223333_2322415_006/EMIT_L2A_MASK_001_20230812T223333_2322415_006.nc}{\textbf{Μask}}
+
+\hypertarget{open-the-.nc-file-and-inspect-data-structure}{%
+\subsubsection{Open the .nc file and inspect data
+structure}\label{open-the-.nc-file-and-inspect-data-structure}}
+
+This does not load the data, which is a good thing. This is a large
+file! Set pp to the folder you want to work in and that contains the
+example data
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pathi }\OtherTok{\textless{}{-}} \StringTok{"./test\_data/EMIT\_L2A\_RFL\_001\_20230812T223333\_2322415\_006.nc"}
+\NormalTok{dat }\OtherTok{\textless{}{-}}\NormalTok{ ncdf4}\SpecialCharTok{::}\FunctionTok{nc\_open}\NormalTok{(pathi) }
+\end{Highlighting}
+\end{Shaded}
+
+Take some time and explore the file:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(dat)}
+\FunctionTok{names}\NormalTok{(dat)}
+\FunctionTok{names}\NormalTok{(dat}\SpecialCharTok{$}\NormalTok{var)}
+\end{Highlighting}
+\end{Shaded}
+
+This is were our variables live! Let's load the data, note that the .nc
+file needs to be already open. This takes a moment.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{refl }\OtherTok{\textless{}{-}}\NormalTok{ ncdf4}\SpecialCharTok{::}\FunctionTok{ncvar\_get}\NormalTok{(dat, }\StringTok{"reflectance"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{plot-spectra}{%
+\subsubsection{Plot spectra}\label{plot-spectra}}
+
+Let's look at the data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{dim}\NormalTok{(refl) }\DocumentationTok{\#\#\# this is a data cube}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  285 1242 1280
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(refl)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  num [1:285, 1:1242, 1:1280] 0.0252 0.0262 0.0228 0.038 0.0382 ...
+\end{verbatim}
+
+Let's see if we can look at our spectra with \texttt{spectrolab}. We
+start with loading one spectrum into spectrolab. Note when referencing
+that \texttt{refl} is a 3-dimensional array consisting of 285 band-wise
+reflectance values in dimension 1, 1242 pixel locations in x, and 1280
+pixel locations in y.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spec1 }\OtherTok{\textless{}{-}}\NormalTok{ refl[,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{] }\DocumentationTok{\#\# one pixel}
+\FunctionTok{str}\NormalTok{(spec1) }\DocumentationTok{\#\# we need a matrix to make a spectra object}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  num [1:285] 0.0252 0.0262 0.0228 0.038 0.0382 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spec\_mat }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\AttributeTok{data =}\NormalTok{ spec1, }\AttributeTok{nrow =} \DecValTok{1}\NormalTok{, }\AttributeTok{dimnames =} \FunctionTok{list}\NormalTok{(}\ConstantTok{NULL}\NormalTok{, }\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(spec1))))}
+
+\NormalTok{spec1\_s }\OtherTok{\textless{}{-}} \FunctionTok{as\_spectra}\NormalTok{(spec\_mat)}
+\FunctionTok{plot}\NormalTok{(spec1\_s)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{getting_started_files/figure-latex/unnamed-chunk-6-1.pdf}
+Not bad. We can see the water absorption band cut out. But we need some
+more information to make sense of this. Let's go back to our
+\texttt{dat} object and extract the wavelength information.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{names}\NormalTok{(dat}\SpecialCharTok{$}\NormalTok{var)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "reflectance"                            
+## [2] "sensor_band_parameters/wavelengths"     
+## [3] "sensor_band_parameters/fwhm"            
+## [4] "sensor_band_parameters/good_wavelengths"
+## [5] "location/lon"                           
+## [6] "location/lat"                           
+## [7] "location/elev"                          
+## [8] "location/glt_x"                         
+## [9] "location/glt_y"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wvl }\OtherTok{\textless{}{-}}\NormalTok{ ncdf4}\SpecialCharTok{::}\FunctionTok{ncvar\_get}\NormalTok{(dat, dat}\SpecialCharTok{$}\NormalTok{var}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{sensor\_band\_parameters/wavelengths}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{wvl\_good }\OtherTok{\textless{}{-}}\NormalTok{ ncdf4}\SpecialCharTok{::}\FunctionTok{ncvar\_get}\NormalTok{(dat, dat}\SpecialCharTok{$}\NormalTok{var}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{sensor\_band\_parameters/good\_wavelengths}\StringTok{\textasciigrave{}}\NormalTok{)}
+
+\FunctionTok{bands}\NormalTok{(spec1\_s) }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(wvl)}
+\FunctionTok{plot}\NormalTok{(spec1\_s)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{getting_started_files/figure-latex/unnamed-chunk-7-1.pdf}
+Better! And we even know which wavelengths have been cut out due to
+water absorption. Can you figure out which?
+
+\hypertarget{create-raster-stack}{%
+\subsection{Create raster stack}\label{create-raster-stack}}
+
+Imaging spectroscopy collects geospatial data, images across certain
+extents of the globe. In the next couple lines we will re-construct
+these spatial data from the .nc file using R's well known
+\texttt{raster} package.
+
+Let's start with exploring the data structure and loading some useful
+information into R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spec }\OtherTok{\textless{}{-}}\NormalTok{ refl[,,]}
+\FunctionTok{str}\NormalTok{(spec) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  num [1:285, 1:1242, 1:1280] 0.0252 0.0262 0.0228 0.038 0.0382 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lon }\OtherTok{\textless{}{-}}\NormalTok{ ncdf4}\SpecialCharTok{::}\FunctionTok{ncvar\_get}\NormalTok{(dat,dat}\SpecialCharTok{$}\NormalTok{var}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{location/lon}\StringTok{\textasciigrave{}}\NormalTok{) }\DocumentationTok{\#\# geographic coordinates per pixel}
+\NormalTok{lat }\OtherTok{\textless{}{-}}\NormalTok{ ncdf4}\SpecialCharTok{::}\FunctionTok{ncvar\_get}\NormalTok{(dat,dat}\SpecialCharTok{$}\NormalTok{var}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{location/lat}\StringTok{\textasciigrave{}}\NormalTok{)}
+
+\NormalTok{reso }\OtherTok{\textless{}{-}} \DecValTok{60} \DocumentationTok{\#\# spatial resolution in meters }
+\NormalTok{orig\_crs }\OtherTok{\textless{}{-}} \StringTok{"EPSG:4326"} \DocumentationTok{\#\# coordinate reference system}
+\end{Highlighting}
+\end{Shaded}
+
+Let's start with rasterizing one band across the entire extent.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spec\_b1 }\OtherTok{\textless{}{-}}\NormalTok{ spec[}\DecValTok{1}\NormalTok{,,]}
+\NormalTok{outr }\OtherTok{\textless{}{-}} \FunctionTok{raster}\NormalTok{(}\FunctionTok{t}\NormalTok{(spec\_b1)) }\DocumentationTok{\#\# the matrix needs to be transposed. Rasters are filled line by line starting at the lower left corner.}
+
+\FunctionTok{plot}\NormalTok{(outr)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{getting_started_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\end{document}
