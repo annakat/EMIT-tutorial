@@ -2,7 +2,6 @@
 title: "Getting started with EMIT imaging spectroscopy data"
 author: "Anna Schweiger"
 output:
-  # pdf_document: default
   html_document: default
 ---
 
@@ -26,9 +25,9 @@ The one tile we will use in this tutorial can accessed here, or in the **test_da
 [**Μask**](https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/EMITL2ARFL.001/EMIT_L2A_RFL_001_20230812T223333_2322415_006/EMIT_L2A_MASK_001_20230812T223333_2322415_006.nc)
 
 ### Open the .nc file and inspect data structure
-This does not load the data, which is a good thing. This is a large file!
+This does not load the data, which is a good thing. This is a large file! Set pp to the folder you want to work in and that contains the example data
 ```{r, message=F}
-pathi <- ("./test_data/EMIT_L2A_RFL_001_20230812T223333_2322415_006.nc") 
+pathi <- "./test_data/EMIT_L2A_RFL_001_20230812T223333_2322415_006.nc"
 dat <- ncdf4::nc_open(pathi) 
 ```
 Take some time and explore the file: 

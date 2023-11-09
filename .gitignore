@@ -1,6 +1,11 @@
 # Prerequisites
 *.d
 
+# Files 
+/test_data
+*DS_Store
+/DS_Store
+
 # Compiled Object files
 *.slo
 *.lo
@@ -30,3 +35,4 @@
 *.exe
 *.out
 *.app
+.Rproj.user

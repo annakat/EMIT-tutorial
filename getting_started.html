@@ -379,8 +379,9 @@ reflectance</strong></a><br />
 <div id="open-the-.nc-file-and-inspect-data-structure" class="section level3">
 <h3>Open the .nc file and inspect data structure</h3>
 <p>This does not load the data, which is a good thing. This is a large
-file!</p>
-<pre class="r"><code>pathi &lt;- (&quot;./test_data/EMIT_L2A_RFL_001_20230812T223333_2322415_006.nc&quot;) 
+file! Set pp to the folder you want to work in and that contains the
+example data</p>
+<pre class="r"><code>pathi &lt;- &quot;./test_data/EMIT_L2A_RFL_001_20230812T223333_2322415_006.nc&quot;
 dat &lt;- ncdf4::nc_open(pathi) </code></pre>
 <p>Take some time and explore the file:</p>
 <pre class="r"><code>str(dat)
