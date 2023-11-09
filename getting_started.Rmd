@@ -1,0 +1,119 @@
+---
+title: "Getting started with EMIT imaging spectroscopy data"
+author: "Anna Schweiger"
+output:
+  # pdf_document: default
+  html_document: default
+---
+
+### Load packages
+```{r, message=F}
+library(RNetCDF)
+library(spectrolab)
+library(raster)
+library(rgdal)
+```
+
+### Downloading EMIT data
+
+Great tutorials for downloading **EMIT** data can be found on NASA's EMIT-Data-Resources [Github](https://github.com/nasa/EMIT-Data-Resources). The entire repository is worth checking out, but scripts are in python.
+
+For **bulk download** see the [NASA Earthdata Wiki] (https://wiki.earthdata.nasa.gov/display/EDSC/How+To%3A+Use+the+Download+Access+Script.) 
+
+The one tile we will use in this tutorial can accessed here, or in the **test_data**:  
+[**L2A reflectance**](https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/EMITL2ARFL.001/EMIT_L2A_RFL_001_20230812T223333_2322415_006/EMIT_L2A_RFL_001_20230812T223333_2322415_006.nc)  
+[**Uncertainty**](https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/EMITL2ARFL.001/EMIT_L2A_RFL_001_20230812T223333_2322415_006/EMIT_L2A_RFLUNCERT_001_20230812T223333_2322415_006.nc)  
+[**Μask**](https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/EMITL2ARFL.001/EMIT_L2A_RFL_001_20230812T223333_2322415_006/EMIT_L2A_MASK_001_20230812T223333_2322415_006.nc)
+
+### Open the .nc file and inspect data structure
+This does not load the data, which is a good thing. This is a large file!
+```{r, message=F}
+pathi <- ("./test_data/EMIT_L2A_RFL_001_20230812T223333_2322415_006.nc") 
+dat <- ncdf4::nc_open(pathi) 
+```
+Take some time and explore the file: 
+```{r, eval=F}
+str(dat)
+names(dat)
+names(dat$var)
+```
+This is were our variables live!  Let's load the data, note that the .nc file needs to be already open. This takes a moment.
+```{r}
+refl <- ncdf4::ncvar_get(dat, "reflectance")
+```
+
+### Plot spectra
+Let's look at the data:
+```{r}
+dim(refl) ### this is a data cube
+str(refl)
+```
+Let's see if we can look at our spectra with `spectrolab`. We start with loading one spectrum into spectrolab. Note when referencing that `refl` is a 3-dimensional array consisting of 285 band-wise reflectance values in dimension 1, 1242 pixel locations in x, and 1280 pixel locations in y.
+
+```{r}
+spec1 <- refl[,1,1] ## one pixel
+str(spec1) ## we need a matrix to make a spectra object
+spec_mat <- matrix(data = spec1, nrow = 1, dimnames = list(NULL, c(1:length(spec1))))
+
+spec1_s <- as_spectra(spec_mat)
+plot(spec1_s)
+```
+Not bad. We can see the water absorption band cut out. But we need some more information to make sense of this. Let's go back to our `dat` object and extract the wavelength information.
+
+```{r}
+names(dat$var)
+wvl <- ncdf4::ncvar_get(dat, dat$var$`sensor_band_parameters/wavelengths`)
+wvl_good <- ncdf4::ncvar_get(dat, dat$var$`sensor_band_parameters/good_wavelengths`)
+
+bands(spec1_s) <- as.numeric(wvl)
+plot(spec1_s)
+```
+Better! And we even know which wavelengths have been cut out due to water absorption. Can you figure out which?
+
+## Create raster stack
+Imaging spectroscopy collects geospatial data, images across certain extents of the globe. In the next couple lines we will re-construct these spatial data from the .nc file using R's well known `raster` package.
+
+Let's start with exploring the data structure and loading some useful information into R.
+
+```{r}
+spec <- refl[,,]
+str(spec) 
+
+lon <- ncdf4::ncvar_get(dat,dat$var$`location/lon`) ## geographic coordinates per pixel
+lat <- ncdf4::ncvar_get(dat,dat$var$`location/lat`)
+
+reso <- 60 ## spatial resolution in meters 
+orig_crs <- "EPSG:4326" ## coordinate reference system
+```
+Let's start with rasterizing one band across the entire extent.
+
+```{r}
+spec_b1 <- spec[1,,]
+outr <- raster(t(spec_b1)) ## the matrix needs to be transposed. Rasters are filled line by line starting at the lower left corner.
+
+plot(outr)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
